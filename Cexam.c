@@ -28,6 +28,7 @@ int main() {
   char ver6[] = "eler";
   char ver7[] = "eter";
   char tr[] = "é";
+  char pr[] = "'";
  
   char tmp[100];
   char tmp1[100]; 
@@ -54,7 +55,7 @@ int main() {
      return 1;
    }
    else {
-       while(fgets(ligne, 100, fbv) != NULL) {
+       while (fgets(ligne, 100, fbv) != NULL) {
          if (strstr(ligne, verbe) != NULL) {
         
            if(strlen(verbe) == (strlen(ligne) - 1)) {
@@ -67,9 +68,13 @@ int main() {
              strcpy(ttm,verbe);
              verbe[l - 2] = '\0';      
                
-             if(verbe[2] == '-') {
+             if (verbe[2] == '-') {
                strcpy(verbe, verbe+3);
                strcpy(ttm, tm+3);
+             }
+
+             if (verbe[1] == pr[0]) {
+               strcpy(verbe, verbe+2);
              }
              
              if ((numl>=108 && numl<=251) || (numl>=495 && numl<=854)) {
@@ -120,7 +125,7 @@ int main() {
                  strcpy(tmp1, tmp);
                }
              }
-             
+            
              if (tm1[2] == '-') {
                printf("\nAu présent de l'indicatif, le verbe se %s se conjugue : \n", ttm);
                sleep(2);
@@ -136,18 +141,28 @@ int main() {
                sleep(1);
 
                if (numl>=1 && numl<=40) { 
-                 
-                 if(tm1[2] == '-') {
-                    strcpy(tm, tm+3);
+                 if (tm1[1] == pr[0]) {
+                     strcpy(tm, tm+3);
                    
-                   if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
-                     printf("Je m'%sye / %sie\n", tm, tm);
-                     sleep(1);
-                   }
-                   else {
-                     printf("Je me %sye / %sie\n", tm, tm);
-                     sleep(1);
-                   }
+                   
+                   printf("Je m'%sye / %sie\n", tm, tm);
+                   sleep(1);
+                   printf("Tu t'%syes / %sies\n", tm, tm);
+                   sleep(1);
+                   printf("Il/Elle s' %sye / %sie\n", tm, tm);
+                   sleep(1);
+                   printf("Nous nous %syons\n", tm);
+                   sleep(1);
+                   printf("Vous vous %syez\n", tm);
+                   sleep(1);
+                   printf("Ils/Elles s'%syent / %sient\n", tm, tm);
+                   sleep(1);
+                 }
+                 else if(tm1[2] == '-') {
+                   strcpy(tm, tm+3);
+          
+                   printf("Je me %sye / %sie\n", tm, tm);
+                   sleep(1);
                    printf("Tu te %syes / %sies\n", tm, tm);
                    sleep(1);
                    printf("Il/Elle se %sye / %sie\n", tm, tm);
@@ -181,17 +196,28 @@ int main() {
                  }
                }  
                else if (numl>=42 && numl<=106) {
-                 if(tm1[2] == '-') {
+                if (tm1[1] == pr[0]) {         
+                  printf("Je m'%sie\n", tm);
+                 sleep(1);
+                   printf("Tu t'%sies\n", tm);
+                   sleep(1);
+                   printf("Il/Elle s'%sie\n", tm);
+                   sleep(1);
+                   printf("Nous nous %syons\n", tm);
+                   sleep(1);
+                   printf("Vous vous %syez\n", tm);
+                   sleep(1);
+                   printf("Ils/Elles s'%sient\n", tm);
+                   sleep(1);
+                }
+                 else if(tm1[2] == '-') {
                     strcpy(tm, tm+3);
+                 
                    
-                   if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
-                     printf("Je m'%sie\n", tm);
-                     sleep(1);
-                   }
-                   else {
+                   
                      printf("Je me %sie\n", tm);
                      sleep(1);
-                   }
+                   
                    printf("Tu te %sies\n", tm);
                    sleep(1);
                    printf("Il/Elle se %sie\n", tm);
@@ -223,18 +249,36 @@ int main() {
                  printf("Ils/Elles %sient\n", tm);
                  sleep(1);
                }
-               }
+             }
              }
              else if ((numl>=108 && numl<=251) || (numl>=495 && numl<=510) || (numl>=671 && numl<=854)) {
-               if(tm1[2] == '-') { 
-                 if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
-                   printf("Je m'%se\n", tmp);
+               if (tm1[1] == pr[0]) {
+                  printf("Je m'%se\n", tmp);
+                   sleep(1);
+                    printf("Tu t'%ses\n", tmp);
+                 sleep(1);
+                 printf("Il/Elle s'%se\n", tmp);
+                 sleep(1);
+                 if (numl>495 && numl<=510) {
+                   printf("Nous nous %seons\n", verbe);
                    sleep(1);
                  }
-                 else {
+                 printf("Nous nous %sons\n", verbe);
+                 sleep(1);
+                 printf("Vous vous %sez\n", verbe);
+                 sleep(1);
+                 printf("Ils/Elles s'%sent\n", tmp);
+                 sleep(1);
+                 
+
+               }
+               if(tm1[2] == '-') { 
+                 
+                   
+               
                    printf("Je me %se\n", tmp);
                    sleep(1);
-                 } 
+                 
                  printf("Tu te %ses\n", tmp);
                  sleep(1);
                  printf("Il/Elle se %se\n", tmp);
@@ -278,6 +322,33 @@ int main() {
              }     
              
              else {
+              if (tm1[1] == pr[0]) {
+                 
+                   printf("Je m'%se\n", verbe);
+                   sleep(1);
+               
+                 printf("Tu t'%ses\n", verbe);
+                 sleep(1);
+                 printf("Il/Elle s'%se\n", verbe);
+                 sleep(1);
+                  
+                 if (numl>253 && numl<=493) {
+                   printf("Nous nous %seons\n", verbe);
+                   sleep(1);
+                 }
+                 else if (numl>=512 && numl<=669){
+                   printf("Nous nous %sons\n", tmp1);
+                   sleep(1);
+                 }
+                 else {
+                   printf("Nous nous %sons\n", verbe);
+                   sleep(1);
+                 }
+                 printf("Vous vous %sez\n", verbe);
+                 sleep(1);
+                 printf("Ils/Elles s'%sent\n", verbe);
+                 sleep(1);
+               }
                if (tm1[2] == '-') {
                  if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
                    printf("Je m'%se\n", verbe);
@@ -345,6 +416,21 @@ int main() {
                printf("\nA l'imparfait de l'indicatif, ce verbe se conjugue : \n"); // Conjugue les verbes à l'imparfait
                sleep(1);
                if (numl>253 && numl<=510) { // Ajoute un 'e' après le 'g' pour les vbs se terminant par 'ger'
+               if (tm1[1] == pr[0]) {
+                  
+                     printf("Je m'%seais\n", verbe);
+                     sleep(1);
+                   printf("Tu t'%seais\n", verbe);
+                   sleep(1);
+                   printf("Il/Elle s'%seait\n", verbe);
+                   sleep(1);
+                   printf("Nous nous %seions\n", verbe);
+                   sleep(1);
+                   printf("Vous vous %seiez\n", verbe);
+                   sleep(1);
+                   printf("Ils/Elles s'%seaient\n", verbe);
+                   sleep(1); 
+               }
                  if (tm1[2] == '-') {
                    if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
                      printf("Je m'%seais\n", verbe);
@@ -387,24 +473,36 @@ int main() {
                }
                }
                else if (numl>=512 && numl<=669){
+                if (tm1[1] == pr[0]) {
+                   
+                   printf("Je m'%sais\n", tmp1);
+                   sleep(1);
+                 printf("Tu t'%sais\n", tmp1);
+                 sleep(1);
+                 printf("Il/Elle s'%sait\n", verbe);
+                 sleep(1);
+                 printf("Nous nous %sions\n", verbe);
+                 sleep(1);
+                 printf("Vous vous %siez\n", verbe);
+                 sleep(1);
+                 printf("Ils/Elles s'%saient\n", tmp1);
+                 sleep(1);
+               }
                  if (tm1[2] == '-') {
-                   if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
-                   printf("J'%sais\n", tmp1);
+                  
+                 
+                   printf("Je me %sais\n", tmp1);
                    sleep(1);
-                 }
-                 else {
-                   printf("Je %sais\n", tmp1);
-                   sleep(1);
-                 }
-                 printf("Tu %sais\n", tmp1);
+                 
+                 printf("Tu te %sais\n", tmp1);
                  sleep(1);
-                 printf("Il/Elle %sait\n", verbe);
+                 printf("Il/Elle se %sait\n", verbe);
                  sleep(1);
-                 printf("Nous %sions\n", verbe);
+                 printf("Nous nous %sions\n", verbe);
                  sleep(1);
-                 printf("Vous %siez\n", verbe);
+                 printf("Vous vous %siez\n", verbe);
                  sleep(1);
-                 printf("Ils/Elles %saient\n", tmp1);
+                 printf("Ils/Elles se %saient\n", tmp1);
                  sleep(1);
                  }
                  else {
@@ -429,6 +527,22 @@ int main() {
                }
                }
                else { // Conjugue à l'imparfait les autres verbes normalement
+                 if (tm1[1] == pr[0]) {
+                   
+                   printf("Je m'%sais\n", verbe);
+                   sleep(1);
+               
+                 printf("Tu t'%sais\n", verbe);
+                 sleep(1);
+                 printf("Il/Elle s'%sait\n", verbe);
+                 sleep(1);
+                 printf("Nous nous %sions\n", verbe);
+                 sleep(1);
+                 printf("Vous vous %siez\n", verbe);
+                 sleep(1);
+                 printf("Ils/Elles s'%saient\n", verbe);
+                 sleep(1);
+                }
                  if (tm1[2] == '-') {
                    if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
                    printf("Je m'%sais\n", verbe);
@@ -474,15 +588,25 @@ int main() {
                printf("\nAu passé simple de l'indicatif, ce verbe se conjugue : \n");
                sleep(1);
                if (numl>253 && numl<=510) { // Ajoute un 'e' après le 'g' pour les vbs se terminant par 'ger'
-                 if (tm1[2] == '-') {
-                   if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
+                 if (tm1[1] == pr[0]) {
+                   
                    printf("Je m'%seai\n", verbe);
                    sleep(1);
+                 printf("Tu t'%seas\n", verbe);
+                 sleep(1);
+                 printf("Il/Elle s'%sea\n", verbe);
+                 sleep(1);
+                 printf("Nous nous %seâmes\n", verbe);
+                 sleep(1);
+                 printf("Vous vous %seâtes\n", verbe);
+                 sleep(1);
+                 printf("Ils/Elles s'%sèrent\n", verbe);
+                 sleep(1);
                  }
-                 else {
+                 if (tm1[2] == '-') {
+                 
                    printf("Je me %seai\n", verbe);
                    sleep(1);
-                 }
                  printf("Tu te %seas\n", verbe);
                  sleep(1);
                  printf("Il/Elle se %sea\n", verbe);
@@ -516,15 +640,29 @@ int main() {
                }
                }
                else if (numl>=512 && numl<=669){
-                 if (tm1[2] == '-') {
-                   if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
+                  if (tm1[1] == pr[0]) {
+                       
                    printf("Je m'%sai\n", tmp1);
                    sleep(1);
+                 
+                 
+                
+                 printf("Tu t'%sas\n", tmp1);
+                 sleep(1);
+                 printf("Il/Elle s'%sa\n", tmp1);
+                 sleep(1);
+                 printf("Nous nous %sâmes\n", tmp1);
+                 sleep(1);
+                 printf("Vous vous %sâtes\n", tmp1);
+                 sleep(1);
+                 printf("Ils/Elles s'%sèrent\n", verbe);
+                 sleep(1);
                  }
-                 else {
+                 if (tm1[2] == '-') {
+                 
                    printf("Je me %sai\n", tmp1);
                    sleep(1);
-                 }
+                 
                  printf("Tu te %sas\n", tmp1);
                  sleep(1);
                  printf("Il/Elle se %sa\n", tmp1);
@@ -558,15 +696,28 @@ int main() {
                }
                }
                else {
-                 if (tm1[2] == '-') {
-                   if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
+                  if (tm1[1] == pr[0]) {
+                    
                    printf("Je m'%sai\n", verbe);
                    sleep(1);
+                 
+               
+                 printf("Tu t'%sas\n", verbe);
+                 sleep(1);
+                 printf("Il/Elle s'%sa\n", verbe);
+                 sleep(1);
+                 printf("Nous nous %sâmes\n", verbe);
+                 sleep(1);
+                 printf("Vous vous %sâtes\n", verbe);
+                 sleep(1);
+                 printf("Ils/Elles s'%sèrent\n", verbe);
+                 sleep(1);
                  }
-                 else {
+                 if (tm1[2] == '-') {
+                  
                    printf("Je me %sai\n", verbe);
                    sleep(1);
-                 }
+                 
                  printf("Tu te %sas\n", verbe);
                  sleep(1);
                  printf("Il/Elle se %sa\n", verbe);
@@ -604,10 +755,25 @@ int main() {
                 printf("\nAu futur simple de l'indicatif, ce verbe se conjugue : \n");
                 sleep(1);
                if (numl>=1 && numl<=40) { 
-                if (tm1[2] == '-') {
-                  if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
-                 printf("Je m'%syerai / %sierai\n", tm, tm);
+                 if (tm1[1] == pr[0]) {
+                     
+                   printf("Je m'%syerai / %sierai\n", tm, tm);
+                   sleep(1);
+                 printf("Tu t'%syeras / %sieras\n", tm, tm);
                  sleep(1);
+                 printf("Il/Elle s'%syera / %siera\n", tm, tm);
+                 sleep(1);
+                 printf("Nous nous %syerons\n", tm);
+                 sleep(1);
+                 printf("Vous vous %syerez\n", tm);
+                 sleep(1);
+                 printf("Ils/Elles s'%syeront / %sieront\n", tm, tm);
+                 sleep(1); 
+                 }
+                 if (tm1[2] == '-') {
+                 if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
+                   printf("Je m'%syerai / %sierai\n", tm, tm);
+                   sleep(1);
                  }
                  else {
                    printf("Je me %syerai / %sierai\n", tm, tm);
@@ -648,32 +814,51 @@ int main() {
                 }
                }
                else if ((numl>=108 && numl<=251) || (numl>=495 && numl<=510) || (numl>=671 && numl<=854)) {
-                  if (tm1[2] == '-') {
-                     if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
+                 if (tm1[1] == pr[0]) {
+                        
                    printf("J'%serai\n", tmp);
                    sleep(1);
-                 }
-                  else {
-                   printf("Je %serai\n", tmp);
-                   sleep(1);
-                 }
-                  printf("Tu %seras\n", tmp);
+                  printf("Tu t'%seras\n", tmp);
                   sleep(1);
-                  printf("Il/Elle %sera\n", tmp);
+                  printf("Il/Elle s'%sera\n", tmp);
                   sleep(1);
                   if (numl>=671 && numl<=747) {
-                    printf("Nous %serons\n", verbe);
+                    printf("Nous nous %serons\n", verbe);
                     sleep(1);
-                    printf("Vous %serez\n", verbe);
+                    printf("Vous vous %serez\n", verbe);
                     sleep(1);
                   }
                   else {
-                   printf("Nous %serons\n", verbe);
+                   printf("Nous nous %serons\n", verbe);
                    sleep(1);
-                   printf("Vous %serez\n", verbe);
+                   printf("Vous vous %serez\n", verbe);
                    sleep(1);
                   }
-                  printf("Ils/Elles %seront\n", tmp);
+                  printf("Ils/Elles s'%seront\n", tmp);
+                  sleep(1); 
+                 }
+                  if (tm1[2] == '-') {
+                    
+                   printf("Je me %serai\n", tmp);
+                   sleep(1);
+                 
+                  printf("Tu te %seras\n", tmp);
+                  sleep(1);
+                  printf("Il/Elle se %sera\n", tmp);
+                  sleep(1);
+                  if (numl>=671 && numl<=747) {
+                    printf("Nous nous %serons\n", verbe);
+                    sleep(1);
+                    printf("Vous vous %serez\n", verbe);
+                    sleep(1);
+                  }
+                  else {
+                   printf("Nous nous %serons\n", verbe);
+                   sleep(1);
+                   printf("Vous vous %serez\n", verbe);
+                   sleep(1);
+                  }
+                  printf("Ils/Elles se %seront\n", tmp);
                   sleep(1); 
                 }
                 else {
@@ -707,15 +892,27 @@ int main() {
                } 
            
                else { 
-                 if (tm1[2] == '-') {
-                   if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
+                 if (tm1[1] == pr[0]) {
+                   
                    printf("Je m'%serai\n", verbe);
                    sleep(1);
+                 printf("Tu t'%seras\n", verbe);
+                 sleep(1);
+                 printf("Il/Elle s'%sera\n", verbe);
+                 sleep(1);
+                 
+                 printf("Nous nous %serons\n", verbe);
+                 sleep(1);
+                 printf("Vous vous %serez\n", verbe);
+                 sleep(1);
+                 printf("Ils/Elles s'%seront\n", verbe);
+                 sleep(1);
                  }
-                 else {
+                 if (tm1[2] == '-') {
+                 
                    printf("Je me %serai\n", verbe);
                    sleep(1);
-                 }
+                 
                  printf("Tu te %seras\n", verbe);
                  sleep(1);
                  printf("Il/Elle se %sera\n", verbe);
@@ -751,7 +948,7 @@ int main() {
                 }
                }
              
-               
+
              do {
              printf("\nVoulez vous conjuguer un verbe à nouveau?\n 2(oui)/0(non)\n");
              scanf("%d", &c);
