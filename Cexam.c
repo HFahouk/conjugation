@@ -8,7 +8,8 @@
    
 int main() {
   int n,c;  
-  char verbe[200]; 
+  char verbe[200];
+  char rep[3]; 
   char ter[2];
   char ter1[] = "èr";
   char ter2[] = "ès";
@@ -35,6 +36,7 @@ int main() {
   char tm[100];
   char tm1[100];
   char ttm[100];
+  char tp[100];
    
   n = 0;
   c = 3;
@@ -64,25 +66,30 @@ int main() {
              
              l  = strlen(verbe); 
              strcpy(tm, verbe);
-             strcpy(tm1, tm);
+            strcpy(tm1, tm);
              strcpy(ttm,verbe);
-             verbe[l - 2] = '\0';      
+             strcpy(tp, verbe);
+               tp[l - 2] = '\0';
+         
                
              if (verbe[2] == '-') {
-               strcpy(verbe, verbe+3);
                strcpy(ttm, tm+3);
+               strcpy(tp, tp+3);
+               strcpy(verbe, verbe+3);
              }
 
              if (verbe[1] == pr[0]) {
                strcpy(verbe, verbe+2);
+            //   strcpy(tm, verbe);
              }
-             
+          
              if ((numl>=108 && numl<=251) || (numl>=495 && numl<=854)) {
                if (numl>=108 && numl<=225){
                  strcpy(ter, ter1);
                  strcpy(ver, ver1);
                }
                else if (numl>=227 && numl<=230) {
+           
                  strcpy(ter, ter2);
                  strcpy(ver, ver2);
                }
@@ -114,18 +121,22 @@ int main() {
                  strcpy(ter, ter7);
                  strcpy(ver, ver7);
                }
-               char *ptr = strstr(verbe, ver);
-               if (ptr) {
-                 strncpy(tmp, verbe, ptr - verbe);
-                 tmp[ptr - verbe] = '\0';
-                 strcat(tmp, ter);
-                 strcat(tmp, ptr + strlen(ver)); 
-               }
+             
+              char *ptr = strstr(verbe, ver);
+              if (ptr) {
+            
+              strncpy(tmp, verbe, ptr - verbe);
+              tmp[ptr - verbe] = '\0';
+              strcat(tmp, ter);
+              strcat(tmp, ptr + strlen(ver));
+       
+    }
                if (numl>=512 && numl<=669) {
                  strcpy(tmp1, tmp);
                }
              }
-            
+             verbe[l - 2] = '\0';   
+               strcpy(verbe, tp);
              if (tm1[2] == '-') {
                printf("\nAu présent de l'indicatif, le verbe se %s se conjugue : \n", ttm);
                sleep(2);
@@ -142,6 +153,7 @@ int main() {
 
                if (numl>=1 && numl<=40) { 
                  if (tm1[1] == pr[0]) {
+                    
                      strcpy(tm, tm+3);
                    
                    
@@ -175,7 +187,7 @@ int main() {
                    sleep(1);
                  }
                  else {
-                 if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == ver[0]) {
+                 if(verbe[0] == 'e' || verbe[0] == 'a' || verbe[0] == 'h' || verbe[0] == tr[0]) {
                    printf("J'%sye / %sie\n", tm, tm);
                    sleep(1);
                  }
@@ -479,7 +491,7 @@ int main() {
                    sleep(1);
                  printf("Tu t'%sais\n", tmp1);
                  sleep(1);
-                 printf("Il/Elle s'%sait\n", verbe);
+                 printf("Il/Elle s'%sait\n", tmp1);
                  sleep(1);
                  printf("Nous nous %sions\n", verbe);
                  sleep(1);
@@ -950,20 +962,20 @@ int main() {
              
 
              do {
-             printf("\nVoulez vous conjuguer un verbe à nouveau?\n 2(oui)/0(non)\n");
-             scanf("%d", &c);
-             } while (c!=0 && c!=2);   
+             printf("\nVoulez vous conjuguer un verbe à nouveau?\n (oui)/(non)\n");
+             scanf("%s", rep);
+             } while ((strcmp(rep, "oui") != 0)  && (strcmp(rep, "non") != 0));   
            } 
           n = 0;
          }
         numl++;
        }
        
-       if(c == 2) {
+       if (strcmp(rep, "oui") == 0){
          printf("Ok\n");
          sleep(1);
        }
-       else if (c == 0){
+       else if (strcmp(rep, "non") == 0) {
         exit(0);
          
        }
