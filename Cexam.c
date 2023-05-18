@@ -949,8 +949,7 @@ int main() {
                  printf("Tu %seras\n", verbe);
                  sleep(1);
                  printf("Il/Elle %sera\n", verbe);
-                 sleep(1);
-                 
+                 sleep(1);      
                  printf("Nous %serons\n", verbe);
                  sleep(1);
                  printf("Vous %serez\n", verbe);
